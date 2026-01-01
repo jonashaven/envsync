@@ -1,0 +1,34 @@
+# Token files - sensitive credentials
+token-*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Settings file (may contain sensitive config)
+.envsync.json
+
+# Deno
+.deno/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+

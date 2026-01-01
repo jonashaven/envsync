@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "dev": "deno run --watch -RWNE src/main.ts"
+  },
+  "imports": {
+    "fmt": "jsr:@std/fmt@^1.0.8"
+  }
+}
