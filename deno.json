@@ -7,6 +7,7 @@
     "dev": "deno run --watch -RWNE src/main.ts"
   },
   "imports": {
-    "fmt": "jsr:@std/fmt@^1.0.8"
+    "fmt": "jsr:@std/fmt@^1.0.8",
+    "parseArgs": "jsr:@std/cli@^1.0.6/parse-args"
   }
 }

@@ -26,6 +26,15 @@ Then run it anytime:
 envsync
 ```
 
+## CLI Options
+
+- `--settings <path>` or `-s <path>`: Specify a custom settings file location (default: `./.envsync.json`)
+
+Example:
+```bash
+envsync --settings ./config/my-settings.json
+```
+
 ## What It Does
 
 - Scans your local `.env` files for environment variables

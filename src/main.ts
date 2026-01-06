@@ -1,3 +1,4 @@
+import { parseArgs } from "parseArgs";
 import { logger } from "./shared/logger.ts";
 import {
   loadSettings,
@@ -129,7 +130,13 @@ const processGitLabRemote = async (
 };
 
 const main = async (): Promise<void> => {
-  const settings = loadSettings();
+  const args = parseArgs(Deno.args, {
+    string: ["settings"],
+    alias: { s: "settings" },
+  });
+
+  const settingsPath = args.settings as string | undefined;
+  const settings = loadSettings(settingsPath);
   const originalSettings = JSON.stringify(settings);
 
   if (settings.remotes.length === 0) {
@@ -139,8 +146,8 @@ const main = async (): Promise<void> => {
       return;
     }
     settings.remotes.push(newRemote);
-    saveSettings(settings);
-    logger.success("Remote configuration saved to .envsync.json");
+    saveSettings(settings, settingsPath);
+    logger.success(`Remote configuration saved to ${settingsPath || ".envsync.json"}`);
   }
 
   const { envs: localEnvs, warnings: localWarnings } = scanLocalEnvs(settings);
@@ -156,7 +163,7 @@ const main = async (): Promise<void> => {
   }
 
   if (JSON.stringify(settings) !== originalSettings) {
-    saveSettings(settings);
+    saveSettings(settings, settingsPath);
     logger.success("Settings updated based on your choices");
   }
 };
